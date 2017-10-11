@@ -13,4 +13,12 @@ class Listing < ApplicationRecord
     def coordinates
         "#{latitude},#{longitude}"
     end
+
+    def night_fee_dollars
+        Money.new(night_fee_cents, "AUD").format
+    end
+
+    def cleaning_fee_dollars
+        Money.new(cleaning_fee_cents, "AUD").format
+    end
 end

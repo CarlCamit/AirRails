@@ -16,17 +16,17 @@
 </p>
 
 <p>
-  <strong>Bed count:</strong>
-  <%= @listing.bed_count %>
-</p>
-
-<p>
-  <strong>Bedroom count:</strong>
+  <strong>Bedroom:</strong>
   <%= @listing.bedroom_count %>
 </p>
 
 <p>
-  <strong>Bathroom count:</strong>
+  <strong>Bed:</strong>
+  <%= @listing.bed_count %>
+</p>
+
+<p>
+  <strong>Bathroom</strong>
   <%= @listing.bathroom_count %>
 </p>
 
@@ -36,13 +36,13 @@
 </p>
 
 <p>
-  <strong>Night fee cents:</strong>
-  <%= @listing.night_fee_cents %>
+  <strong>Night Fee:</strong>
+  <%= @listing.night_fee_dollars %>
 </p>
 
 <p>
-  <strong>Cleaning fee cents:</strong>
-  <%= @listing.cleaning_fee_cents %>
+  <strong>Cleaning Fee:</strong>
+  <%= @listing.cleaning_fee_collars %>
 </p>
 
 <%= link_to 'Edit', edit_listing_path(@listing) %> |
