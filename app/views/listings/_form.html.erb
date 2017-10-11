@@ -17,6 +17,16 @@
   </div>
 
   <div class="field">
+    <% if @listing.image.present? %>
+      <%= image_tag @listing.image_url %>
+    <% end %>
+
+    <%= form.label :image %>
+    <%= form.hidden_field :image, value: @listing.cached_image_data %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="field">
     <%= form.label :street_address %>
     <%= form.text_field :street_address, id: :listing_street_address %>
   </div>

@@ -2,6 +2,8 @@ class Listing < ApplicationRecord
     geocoded_by :full_address
     after_validation :geocode
 
+    include ImageUploader::Attachment.new(:image) # adds an `image` virtual attribute
+
     def country
         ISO3166::Country.new(country_code.upcase)
     end

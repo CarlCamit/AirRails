@@ -11,6 +11,12 @@
 </p>
 
 <p>
+  <% if @listing.image.present? %>
+      <%= image_tag @listing.image_url %>
+  <% end %>
+</p>
+
+<p>
   <strong>Coordinates:</strong>
   <%= @listing.coordinates %>
 </p>
