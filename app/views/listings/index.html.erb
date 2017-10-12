@@ -2,7 +2,35 @@
 
 <h1>Listings</h1>
 
-<%= render 'listing', listings: @listings %>
+<div class="d-flex flex-wrap">
+    <% @listings.each do |listing| %>
+        <div class="p-2">
+            <div class="card" style="width: 20rem;">
+                <div class="card-block card-body">
+                    <h4 class="card-title text-center"><%= listing.title %></h4>
+                </div>
+                <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{listing.latitude},#{listing.longitude}&zoom=12&size=600x400", class: "card-img-top" %>
+                <div class="card-block card-body">
+                    <p class="card-text">
+                        <strong>Address:</strong> <%= format_address(listing.street_address, listing.city, listing.country_code) %><br>
+                        <strong><%= pluralize_without_count(listing.bedroom_count, 'Bedroom') %>:</strong> <%= listing.bedroom_count %><br>
+                        <strong><%= pluralize_without_count(listing.bed_count, 'Bed') %>:</strong> <%= listing.bed_count %><br>
+                        <strong><%= pluralize_without_count(listing.bathroom_count, 'Bathroom') %>:</strong> <%= listing.bathroom_count %><br>
+                        <strong>Night Fee:</strong> <%= format_cents(listing.night_fee_cents, listing.country_code) %><br>
+                        <strong>Cleaning Fee:</strong> <%= format_cents(listing.cleaning_fee_cents, listing.country_code) %>    
+                    </p>
+                    <details>
+                        <summary>Photos</summary>
+                        <% if listing.image.present? %>
+                            <%= image_tag listing.image_url %>
+                        <% end %>
+                    </details><br>
+                <%= link_to 'Show', listing_path(listing), class:"btn btn-primary"%>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>
 
 <br>
 
