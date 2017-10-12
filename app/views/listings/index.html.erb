@@ -6,9 +6,7 @@
     <% @listings.each do |listing| %>
         <div class="p-2">
             <div class="card" style="width: 20rem;">
-                <div class="card-block card-body">
-                    <h4 class="card-title text-center"><%= listing.title %></h4>
-                </div>
+                <h4 class="card-header text-center"><%= listing.title %></h4>
                 <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?center=#{listing.latitude},#{listing.longitude}&zoom=12&size=600x400", class: "card-img-top" %>
                 <div class="card-block card-body">
                     <p class="card-text">
@@ -25,8 +23,8 @@
                             <%= image_tag listing.image_url %>
                         <% end %>
                     </details><br>
-                <%= link_to 'Show', listing_path(listing), class:"btn btn-primary"%>
                 </div>
+            <%= link_to 'Show', listing_path(listing), class:"btn btn-primary"%>
             </div>
         </div>
     <% end %>
@@ -35,3 +33,4 @@
 <br>
 
 <%= link_to 'New Listing', new_listing_path %>
+ <%= link_to('Logout', destroy_user_session_path, method: :delete) %>   
