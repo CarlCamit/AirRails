@@ -1,5 +1,5 @@
 <div>
-    Messaging <%= @listing.host.email %> regarding <strong><%=  @listing.title %></strong>
+    Messaging <%= @conversation.listing.host.email %> regarding <strong><%=  @conversation.listing.title %></strong>
 </div><br>
 
 <div>
@@ -26,7 +26,7 @@
     <% end %>
 </div>
 
-<%= form_for [@listing, @conversation, @message], html: {class: "ui reply form"} do |f| %>
+<%= form_with(model: [@conversation, @message], html: {class: "ui reply form"}) do |f| %>
     <div class="field">
         <%= f.text_area :body, class: "form-control" %>
     </div>
@@ -34,5 +34,7 @@
     <div>
         <%= f.submit "Add Reply", class: "ui blue labeled submit icon button" %>
     </div>
-<% end %>
+<% end %><br>
+
+<%= link_to "Back", conversations_path, class:'btn btn-primary' %>
 </div>

@@ -1,11 +1,5 @@
 class MessagesController < ApplicationController
-    before_action do
-        @listing = Listing.find(params[:listing_id])
-        @conversation = Conversation.find(params[:conversation_id])
-    end
-
-    # before_action :set_listing
-    # before_action :set_conversation
+    before_action :set_conversation
 
     def index
         @messages = @conversation.messages
@@ -37,7 +31,7 @@ class MessagesController < ApplicationController
         @message = @conversation.messages.new(message_params)
 
         if @message.save
-            redirect_to listing_conversation_messages_path(@listing, @conversation)
+            redirect_to conversation_messages_path(@conversation)
         end
     end
 
@@ -45,10 +39,6 @@ class MessagesController < ApplicationController
 
     def set_conversation
         @conversation = Conversation.find(params[:conversation_id])
-    end
-
-    def set_listing
-        @listing = Listing.find(params[:listing_id])
     end
 
     def message_params
