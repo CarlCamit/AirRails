@@ -9,14 +9,14 @@
                 <% else %>
                     <% recipient = User.find(conversation.sender_id) %>
                 <% end %>
-            <%= link_to recipient.email, listing_conversation_messages_path(@listing, conversation)%>
+                <%= link_to "#{Listing.find(conversation.listing_id).title} from #{recipient.email}", listing_conversation_messages_path(@listing, conversation) %>
             <% end %>
         <% end %>
         </div>
     </div>
 </div>
 
-<div class="ui segment">
+<!-- div class="ui segment">
     <h3>All Users</h3>
     <div class="ui list">
         <% @users.each do |user| %>

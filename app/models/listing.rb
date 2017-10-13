@@ -5,6 +5,7 @@ class Listing < ApplicationRecord
     after_validation :geocode
 
     has_many :conversations, dependent: :destroy
+    belongs_to :host, :foreign_key => :host_id, class_name: 'User'
 
     def full_address
         "#{street_address}, #{city}, #{ISO3166::Country.new(country_code.upcase).name}"

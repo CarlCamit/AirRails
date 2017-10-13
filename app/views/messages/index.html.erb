@@ -1,3 +1,8 @@
+<div>
+    Messaging <%= @listing.host.email %> regarding <strong><%=  @listing.title %></strong>
+</div><br>
+
+<div>
 <% if @over_ten %>
     <%= link_to 'Show Previous', '?m=all' %>
 <% end %>
@@ -30,3 +35,4 @@
         <%= f.submit "Add Reply", class: "ui blue labeled submit icon button" %>
     </div>
 <% end %>
+</div>
