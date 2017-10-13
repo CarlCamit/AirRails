@@ -8,8 +8,6 @@ class MessagesController < ApplicationController
     # before_action :set_conversation
 
     def index
-        @conversation = Conversation.find(params[:conversation_id])
-        p @conversation.inspect
         @messages = @conversation.messages
         
         if @messages.length > 10

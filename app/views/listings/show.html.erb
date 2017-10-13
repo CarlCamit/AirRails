@@ -51,8 +51,12 @@
   <%= format_cents(@listing.cleaning_fee_cents, @listing.country_code) %>
 </p>
 
-<%= link_to 'Edit', edit_listing_path(@listing), class: "btn btn-primary" %>
-<%= link_to 'Delete', listing_path(@listing), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger" %><br>
 <%= link_to 'Back', listings_path, class: "btn btn-primary"%>
-
-<%= link_to 'Message me', listing_conversations_path(listing_id: @listing.id, sender_id: current_user.id, recipient_id: @listing.host_id), method: 'post' %>
+<% if user_signed_in? %>
+  <% if @listing.host_id == current_user.id %>
+    <%= link_to 'Edit', edit_listing_path(@listing), class: "btn btn-primary" %>
+    <%= link_to 'Delete', listing_path(@listing), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger" %>
+  <% else %>
+    <%= link_to 'Message me', listing_conversations_path(listing_id: @listing.id, sender_id: current_user.id, recipient_id: @listing.host_id), method: 'post', class:"btn btn-primary" %>
+  <% end %>
+<% end %>
