@@ -1,7 +1,18 @@
-<div class="ui segment">
-    <h3>Mailbox</h3>
-    <div class="ui list">
-        <div class="item">
+<h1>Mailbox</h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+    <div class="collapse navbar-collapse">
+        <div class="navbar-nav">
+            <%= link_to "Home", root_path, class:"nav-item nav-link active" %>
+            <%= link_to "Mailbox", conversations_path, class:"nav-item nav-link active" %>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3"><h3>Delete</h3></div>
+        <div class="col-sm-3"><h3>Subject</h3></div>
+        <div class="col-sm-3"><h3>Sent To</h3></div>
+        <div class="col-sm-3"><h3>Sent To</h3></div>
         <% @conversations.each do |conversation| %>
             <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
                 <% if conversation.sender_id == current_user.id %>
@@ -9,9 +20,14 @@
                 <% else %>
                     <% recipient = User.find(conversation.sender_id) %>
                 <% end %>
+                <div class="col-sm-3"><p>Delete</p></div>
+                <div class="col-sm-3"><p><%= link_to "#{Listing.find(conversation.listing_id).title}", conversation_messages_path(conversation), class:"btn btn-primary" %></p></div>
+                <div class="col-sm-3"><p><%= recipient.email %></p></div>
+                <div class="col-sm-3"><p><%= conversation.messages.last.message_time %></p></div>
             <% end %>
-            <p><%= link_to "#{Listing.find(conversation.listing_id).title} from #{recipient.email}", conversation_messages_path(conversation), class:'btn btn-primary'%><p>
         <% end %>
         </div>
     </div>
 </div>
+
+<%= link_to 'Back', listings_path, class: "btn btn-primary"%>
