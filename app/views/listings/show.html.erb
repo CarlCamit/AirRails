@@ -41,15 +41,29 @@
   <%= @listing.description %>
 </p>
 
+<h2>Book</h2>
 <p>
-  <strong>Night Fee:</strong>
-  <%= format_cents(@listing.night_fee_cents, @listing.country_code) %>
+  <strong>Night Fee:</strong> <%= format_cents(@listing.night_fee_cents, @listing.country_code) %> per night
+</p>
+<p>
+  <strong>Cleaning Fee:</strong> <%= format_cents(@listing.cleaning_fee_cents, @listing.country_code) %> per night
 </p>
 
-<p>
-  <strong>Cleaning Fee:</strong>
-  <%= format_cents(@listing.cleaning_fee_cents, @listing.country_code) %>
-</p>
+<%= form_with(model: @new_booking) do |f| %>
+  <div>
+    <%= f.label :check_in_at, 'Check In' %>
+    <%= f.date_field :check_in_at %>
+  </div>
+  <div>
+    <%= f.label :check_out_at, 'Check Out' %>
+    <%= f.date_field :check_out_at %>
+  </div>
+  <div>
+    <%= f.label :guest_count, 'Guests' %>
+    <%= f.number_field :guest_count %>
+  </div>
+  <%= f.submit %>
+<% end %>
 
 <%= link_to 'Back', listings_path, class: "btn btn-primary"%>
 <% if user_signed_in? %>

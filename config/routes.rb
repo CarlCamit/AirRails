@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root 'listings#index'
+
   get '/support' => 'support#new'
   post '/support' => 'support#create'
+
+  post '/bookings' => 'bookings#create'
 
 end
